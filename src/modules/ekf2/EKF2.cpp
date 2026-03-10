@@ -1,4 +1,29 @@
-/****************************************************************************
+/**
+ * @file Ekf2.cpp
+ * 
+ * EKF (Extended Kalman Filter) - 扩展卡尔曼滤波器
+ * 
+ * 主要功能:
+ * 1. 姿态估计 - 四元数估计
+ * 2. 位置估计 - GPS/视觉融合
+ * 3. 速度估计 - 传感器融合
+ * 4. 传感器偏差估计
+ *
+ * 输入传感器:
+ * - IMU (加速度计/陀螺仪)
+ * - GPS
+ * - 磁力计
+ * - 气压计
+ * - 视觉里程计
+ *
+ * 输出:
+ * - vehicle_attitude (姿态)
+ * - vehicle_local_position (本地位置)
+ * - vehicle_global_position (全球位置)
+ * - estimator_status (估计器状态)
+ *
+ * @author PX4 Team
+ */ **************************************************************************
  *
  *   Copyright (c) 2015-2023 PX4 Development Team. All rights reserved.
  *

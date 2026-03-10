@@ -34,8 +34,33 @@
 /**
  * @file Commander.cpp
  *
- * Main state machine / business logic
+ * Main state machine / 状态机 - 无人机指挥官模块
  *
+ * 主要功能:
+ * 1. 飞行状态管理 - 锁定/解锁状态切换
+ * 2. 飞行模式控制 - 手动/自稳/位置/自动等模式
+ * 3. 安全检查 - 传感器检查、电池检查、GPS检查
+ * 4. 指令处理 - 接收MAVLink和RC指令
+ * 5. 传感器校准 - 加速度计、磁力计、罗盘校准
+ *
+ * 模块调用关系:
+ * Commander -> ekf2 (状态估计)
+ * Commander -> mc_att_control/mc_pos_control (姿态/位置控制)
+ * Commander -> navigator (导航)
+ * Commander -> sensors (传感器)
+ *
+ * 消息订阅:
+ * - vehicle_status: 飞行器状态
+ * - actuator_armed: 解锁状态
+ * - vehicle_command: 地面站命令
+ * - rc_channels: 遥控器输入
+ *
+ * 消息发布:
+ * - vehicle_command_ack: 命令确认
+ * - tune_control: 声音提示
+ *
+ * @author PX4 Development Team
+ * @date 2013-2023
  */
 
 #include "Commander.hpp"
